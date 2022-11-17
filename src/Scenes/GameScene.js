@@ -4,7 +4,6 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
 import Laser from '../Objects/Laser';
-import ProcessScore from '../Scores/serviceApi';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -88,10 +87,12 @@ export default class GameScene extends Phaser.Scene {
     this.scoreText = this.add.text(32, 16, 'Score: 0', {
       fontSize: '20px',
       fill: '#000',
+      fontStyle: 'bold',
     });
     this.overText = this.add.text(250, 300, 'Game Over!', {
       fontSize: '30px',
-      fill: '#F00',
+      fill: '#000',
+      fontStyle: 'bold',
     });
     this.overText.setVisible(false);
   }
@@ -170,11 +171,6 @@ export default class GameScene extends Phaser.Scene {
     this.prepareEnd('Predators Win. Game Over!');
   }
 
-  submitScore() {
-    if (config.playerScore !== 0) {
-      ProcessScore.setScore(config.playerName, config.playerScore);
-    }
-  }
 
   update() {
     this.predators.children.iterate((predator) => {
@@ -193,8 +189,5 @@ export default class GameScene extends Phaser.Scene {
 
     this.scoreText.setText(`Score: ${config.playerScore}`);
 
-    if (!config.gameOn) {
-      this.submitScore();
-    }
   }
 }

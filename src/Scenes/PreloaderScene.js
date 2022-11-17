@@ -10,9 +10,6 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload() {
-    this.add.image(400, 300, 'background');
-    this.add.image(400, 200, 'logo');
-
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
@@ -53,7 +50,7 @@ export default class PreloaderScene extends Phaser.Scene {
     });
     assetText.setOrigin(0.5, 0.5);
 
-    this.load.on('progress', (value) => {
+    this.load.on('progress', async (value) => {
       percentText.setText(`${parseInt((value * 100), 10)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
@@ -65,6 +62,7 @@ export default class PreloaderScene extends Phaser.Scene {
     });
 
     this.load.on('complete', () => {
+      console.log('asdasd')
       progressBar.destroy();
       progressBox.destroy();
       loadingText.destroy();

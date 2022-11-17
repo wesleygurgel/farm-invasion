@@ -20,6 +20,7 @@ export default class TitleScene extends Phaser.Scene {
       fontSize: '15px',
       // fixedWidth: 150,
       fixedHeight: 100,
+      fontStyle: 'bold',
     });
 
     // Game
@@ -34,6 +35,7 @@ export default class TitleScene extends Phaser.Scene {
       'By: Wesley Gurgel and Daniel Otaviano',
       {
         fontSize: '17px',
+        fontStyle: 'bold',
       },
     );
 
